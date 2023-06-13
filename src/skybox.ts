@@ -29,7 +29,7 @@ Transform.create(skyboxPZ, {
 MeshRenderer.setPlane(skyboxPZ)
 Material.setBasicMaterial(skyboxPZ, {
     texture: Material.Texture.Common({
-      src: "images/skybox/pz.png" 
+      src: "images/skybox/1/pz.png" 
     })
   })
 
@@ -44,7 +44,7 @@ Transform.create(skyboxNZ, {
 MeshRenderer.setPlane(skyboxNZ)
 Material.setBasicMaterial(skyboxNZ, {
     texture: Material.Texture.Common({
-      src: "images/skybox/nz.png" 
+      src: "images/skybox/1/nz.png" 
     })
   })
 
@@ -59,7 +59,7 @@ Transform.create(skyboxPY, {
 MeshRenderer.setPlane(skyboxPY)
 Material.setBasicMaterial(skyboxPY, {
     texture: Material.Texture.Common({
-      src: "images/skybox/py.png" 
+      src: "images/skybox/1/py.png" 
     })
   })
 
@@ -74,7 +74,7 @@ Transform.create(skyboxNY, {
 MeshRenderer.setPlane(skyboxNY)
 Material.setBasicMaterial(skyboxNY, {
     texture: Material.Texture.Common({
-      src: "images/skybox/ny.png" 
+      src: "images/skybox/1/ny.png" 
     })
   })
 
@@ -89,7 +89,7 @@ Transform.create(skyboxPX, {
 MeshRenderer.setPlane(skyboxPX)
 Material.setBasicMaterial(skyboxPX, {
     texture: Material.Texture.Common({
-      src: "images/skybox/px.png" 
+      src: "images/skybox/1/px.png" 
     })
   })
 
@@ -104,7 +104,7 @@ Transform.create(skyboxNX, {
 MeshRenderer.setPlane(skyboxNX)
 Material.setBasicMaterial(skyboxNX, {
     texture: Material.Texture.Common({
-      src: "images/skybox/nx.png" 
+      src: "images/skybox/1/nx.png" 
     })
   })
 

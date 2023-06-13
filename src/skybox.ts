@@ -3,20 +3,17 @@ import {  Vector3 , Quaternion} from "@dcl/sdk/math";
 import { height, radiusMultiplier, sceneSizeX, sceneSizeZ } from "./resources";
 
 
-const folderNumber = "2"
 
-let testPlatform = engine.addEntity()
-Transform.create(testPlatform, {
-    position: Vector3.create(sceneSizeX/2,height/2,sceneSizeZ/2),
-    scale: Vector3.create(16,1,16)
-})
-MeshCollider.setBox(testPlatform)
+
+
+//#region SkyBox
+ 
+const folderNumber = "5"
 
 //root
 export let skyboxRoot = engine.addEntity()
 Transform.create(skyboxRoot)
-//AvatarAttach.create(skyboxRoot, {anchorPointId: AvatarAnchorPointType.AAPT_NAME_TAG})
-//Billboard.create(skyboxRoot, {billboardMode:BillboardMode.BM_ALL})
+
 //front
 export let skyboxPZ = engine.addEntity()
 Transform.create(skyboxPZ, {
@@ -105,34 +102,34 @@ Material.setBasicMaterial(skyboxNX, {
       src: "images/skybox/"+ folderNumber +"/nx.png" 
     })
   })
+//#endregion
 
-
-  PointerEvents.create(testPlatform, { pointerEvents: [
-    
-    {
-      eventInfo: {button: InputAction.IA_PRIMARY, maxDistance: 100, hoverText: "GO Up"},
-      eventType: PointerEventType.PET_DOWN
-    },
-   
-  ]})
-
-  engine.addSystem(() => {
-    const meshEntities = engine.getEntitiesWith(MeshCollider)
-    for (const [entity] of meshEntities) {
-      
+/*
+PointerEvents.create(testPlatform, { pointerEvents: [
+  {
+    eventInfo: {button: InputAction.IA_PRIMARY, maxDistance: 100, hoverText: "GO Up"},
+    eventType: PointerEventType.PET_DOWN
+  },
   
-       if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
-        const transform = Transform.getMutable(engine.PlayerEntity)
+]})*/
 
-        transform.position = Vector3.create(sceneSizeX/2,height/2 +10,sceneSizeX/2)
-      }
-    }
-  })
-
-  engine.addSystem(() => {
+engine.addSystem(() => {
+  const meshEntities = engine.getEntitiesWith(MeshCollider)
+  for (const [entity] of meshEntities) {
     
-    Transform.getMutable(skyboxRoot).position = Transform.get(engine.PlayerEntity).position
-  })
+
+      if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
+      const transform = Transform.getMutable(engine.PlayerEntity)
+
+      transform.position = Vector3.create(sceneSizeX/2,height/2 +10,sceneSizeX/2)
+    }
+  }
+})
+
+engine.addSystem(() => {
+  
+  Transform.getMutable(skyboxRoot).position = Transform.get(engine.PlayerEntity).position
+})
 
 
   

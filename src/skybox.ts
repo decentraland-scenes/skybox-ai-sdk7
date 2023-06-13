@@ -3,7 +3,7 @@ import {  Vector3 , Quaternion} from "@dcl/sdk/math";
 import { height, radiusMultiplier, sceneSizeX, sceneSizeZ } from "./resources";
 
 
-
+const folderNumber = "2"
 
 let testPlatform = engine.addEntity()
 Transform.create(testPlatform, {
@@ -27,7 +27,7 @@ Transform.create(skyboxPZ, {
 MeshRenderer.setPlane(skyboxPZ)
 Material.setBasicMaterial(skyboxPZ, {
     texture: Material.Texture.Common({
-      src: "images/skybox/1/pz.png" 
+      src: "images/skybox/"+ folderNumber +"/pz.png" 
     })
   })
 
@@ -42,7 +42,7 @@ Transform.create(skyboxNZ, {
 MeshRenderer.setPlane(skyboxNZ)
 Material.setBasicMaterial(skyboxNZ, {
     texture: Material.Texture.Common({
-      src: "images/skybox/1/nz.png" 
+      src: "images/skybox/"+ folderNumber +"/nz.png" 
     })
   })
 
@@ -57,7 +57,7 @@ Transform.create(skyboxPY, {
 MeshRenderer.setPlane(skyboxPY)
 Material.setBasicMaterial(skyboxPY, {
     texture: Material.Texture.Common({
-      src: "images/skybox/1/py.png" 
+      src: "images/skybox/"+ folderNumber +"/py.png" 
     })
   })
 
@@ -72,7 +72,7 @@ Transform.create(skyboxNY, {
 MeshRenderer.setPlane(skyboxNY)
 Material.setBasicMaterial(skyboxNY, {
     texture: Material.Texture.Common({
-      src: "images/skybox/1/ny.png" 
+      src: "images/skybox/"+ folderNumber +"/ny.png" 
     })
   })
 
@@ -87,7 +87,7 @@ Transform.create(skyboxPX, {
 MeshRenderer.setPlane(skyboxPX)
 Material.setBasicMaterial(skyboxPX, {
     texture: Material.Texture.Common({
-      src: "images/skybox/1/px.png" 
+      src: "images/skybox/"+ folderNumber +"/px.png" 
     })
   })
 
@@ -102,7 +102,7 @@ Transform.create(skyboxNX, {
 MeshRenderer.setPlane(skyboxNX)
 Material.setBasicMaterial(skyboxNX, {
     texture: Material.Texture.Common({
-      src: "images/skybox/1/nx.png" 
+      src: "images/skybox/"+ folderNumber +"/nx.png" 
     })
   })
 

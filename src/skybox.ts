@@ -1,11 +1,9 @@
-import { AvatarAnchorPointType, AvatarAttach, Billboard, BillboardMode, InputAction, Material, MeshCollider, MeshRenderer, PointerEventType, PointerEvents, Transform, engine, inputSystem } from "@dcl/sdk/ecs";
-import { Color3, Vector3 , Quaternion} from "@dcl/sdk/math";
+import {  InputAction, Material, MeshCollider, MeshRenderer, PointerEventType, PointerEvents, Transform, engine, inputSystem } from "@dcl/sdk/ecs";
+import {  Vector3 , Quaternion} from "@dcl/sdk/math";
+import { height, radiusMultiplier, sceneSizeX, sceneSizeZ } from "./resources";
 
 
-const sceneSizeX = 6*16
-const sceneSizeZ = 6*16
-const height = 6*16
-const radiusMultiplier = 2
+
 
 let testPlatform = engine.addEntity()
 Transform.create(testPlatform, {

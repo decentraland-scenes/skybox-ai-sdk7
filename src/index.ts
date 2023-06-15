@@ -1,21 +1,15 @@
-import { MeshCollider, Transform, engine,  InputAction, Material, MeshRenderer, PointerEventType, inputSystem } from '@dcl/sdk/ecs'
+import { MeshCollider, Transform, engine,  InputAction, Material, MeshRenderer, PointerEventType, inputSystem, pointerEventsSystem } from '@dcl/sdk/ecs'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { height, sceneSizeX, sceneSizeZ, radiusMultiplier } from './resources'
 
 
-
-
-
-
-
-
 //#region SkyBox
-const folderNumber = "5"
+const folderNumber = "2"
 
 //root
 export let skyboxRoot = engine.addEntity()
-Transform.create(skyboxRoot)
+Transform.create(skyboxRoot, {position: Vector3.create(sceneSizeX/2,height/2,sceneSizeZ/2)})
 
 //front
 export let skyboxPZ = engine.addEntity()
@@ -108,29 +102,45 @@ Material.setBasicMaterial(skyboxNX, {
 //#endregion
 
 
-engine.addSystem(() => {
-  const meshEntities = engine.getEntitiesWith(MeshCollider)
-  for (const [entity] of meshEntities) {
-    
-
-      if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
-      const transform = Transform.getMutable(engine.PlayerEntity)
-
-      transform.position = Vector3.create(sceneSizeX/2,height/2 +10,sceneSizeX/2)
-    }
-  }
-})
-
-engine.addSystem(() => {
-    
-  Transform.getMutable(skyboxRoot).position = Transform.get(engine.PlayerEntity).position
-})
-
+//Elevated platform
 let elevatedPlatform = engine.addEntity()
 Transform.create(elevatedPlatform, {
     position: Vector3.create(sceneSizeX/2,height/2,sceneSizeZ/2),
-    scale: Vector3.create(16,1,16)
+    scale: Vector3.create(4,1,10)
 })
 MeshCollider.setBox(elevatedPlatform)
+MeshRenderer.setBox(elevatedPlatform)
 
-movePlayerTo({newRelativePosition: Vector3.create(sceneSizeX/2,height/2 + 5,sceneSizeZ/2)})
+//Teleport to the platform
+const clickableEntity = engine.addEntity()
+MeshRenderer.setBox(clickableEntity)
+MeshCollider.setBox(clickableEntity)
+Transform.create(clickableEntity, {position: Vector3.create(6, 1, 6)})
+
+pointerEventsSystem.onPointerDown(
+  clickableEntity,
+  function () {
+    movePlayerTo({newRelativePosition: Vector3.create(sceneSizeX/2,height/2 + 2,sceneSizeZ/2)})
+  },
+  {
+    button: InputAction.IA_POINTER,
+    hoverText: 'Click Me'
+  }
+)
+
+const clickableEntity2 = engine.addEntity()
+MeshRenderer.setBox(clickableEntity2)
+MeshCollider.setBox(clickableEntity2)
+Transform.create(clickableEntity2, {position: Vector3.create(sceneSizeX/2, 1, sceneSizeZ/2)})
+
+pointerEventsSystem.onPointerDown(
+  clickableEntity2,
+  function () {
+    movePlayerTo({newRelativePosition: Vector3.create(sceneSizeX/2,height/2 + 2,sceneSizeZ/2)})
+  },
+  {
+    button: InputAction.IA_POINTER,
+    hoverText: 'Click Me'
+  }
+)
+
